@@ -1,0 +1,28 @@
+.marginTop {
+    margin-top: 30px;
+}
+
+.marginTopSections {
+    margin-top: 60px;
+}
+
+.table {
+    width:100%;
+}
+
+.table td {
+    text-align: left;
+}
+
+h2 {
+    margin-bottom: 40px;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    cursor:pointer;
+}
+
+.dropdown-menu li:hover {
+    background-color: lightgray;
+}

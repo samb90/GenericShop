@@ -1,0 +1,8 @@
+.navbar-brand {
+  padding: 0;
+}
+
+.navbar-brand .logo {
+    height: inherit;
+    padding: 15px;
+}

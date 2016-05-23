@@ -1,0 +1,131 @@
+<section ng-switch="products" id="stepOne">
+    <h2 class="text-center">Step 1 - Select product</h2>
+    <div ng-repeat="product in products"
+         ng-if="$index % 3 == 0"
+         ng-switch-default
+         class="row text-center marginTop">
+
+        <product data-id="{{getId($index)}}"
+                 data-name="{{getName($index)}}"
+                 data-price="{{getPrice($index) | currency:'£'}}"
+                 data-image="{{getImage($index)}}"></product>
+
+        <product ng-if="products.length > ($index + 1)"
+                 data-id="{{getId($index + 1)}}"
+                 data-name="{{getName($index+1)}}"
+                 data-price="{{getPrice($index + 1)| currency:'£'}}"
+                 data-image="{{getImage($index + 1)}}"></product>
+
+        <product ng-if="products.length > ($index + 2)"
+                 data-id="{{getId($index + 2)}}"
+                 data-name="{{getName($index + 2)}}"
+                 data-price="{{getPrice($index + 2)| currency:'£'}}"
+                 data-image="{{getImage($index + 2)}}"></product>
+    </div>
+
+    <div ng-switch-when="products.length < 1">
+        <h1>There are no products to display</h1>
+    </div>
+</section>
+
+<section class="marginTopSections" id="stepTwo">
+    <h2 class="text-center">Step 2 - Select a delivery date</h2>
+
+    <div class="row text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div style="display:inline-block;">
+                <uib-datepicker ng-model="deliveryDate"
+                                ng-click="addDeliveryDateToBasket(deliveryDate)"
+                                class="well well-sm"
+                                datepicker-options="options"></uib-datepicker>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="marginTopSections" id="stepThree">
+    <h2 class="text-center">Step 3 - Select a delivery type</h2>
+
+    <div class="row text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            <div class="btn-group" uib-dropdown is-open="status.isOpen">
+                <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                    {{ $scope.orderDetails.deliveryType || "Delivery Options" }} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                    <li role="menuitem" ng-click="selectDeliveryType('Next')">Next Day Delivery</li>
+                    <li role="menuitem" ng-click="selectDeliveryType('First')">First Class</li>
+                    <li role="menuitem" ng-click="selectDeliveryType('Second')">Second Class</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="marginTopSections" id="stepFour">
+    <h2 class="text-center">Step 4 - Delivery Details</h2>
+
+    <div class="row text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <input type="text" class="form-control" placeholder="First Name" ng-model="firstName"
+                   ng-blur="addFirstName(firstName)">
+            <input type="text" class="form-control" placeholder="Last Name" ng-model="lastName" style="margin-top: 20px"
+                   ng-blur="addLastName(lastName)">
+        </div>
+    </div>
+</section>
+
+<section class="marginTopSections" id="stepFive">
+    <h2 class="text-center">Order Summary</h2>
+
+    <div class="row text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <table class="table">
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                </tr>
+                <tr>
+                    <td>{{ orderDetails.name }}</td>
+                    <td>{{ orderDetails.quantity }}</td>
+                    <td>{{ orderDetails.unitCost | currency:'£' }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h4>First Name: {{ orderDetails.firstName }}</h4>
+        </div>
+    </div>
+    <div class="row text-left">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h4>Last Name: {{ orderDetails.lastName }}</h4>
+        </div>
+    </div>
+    <div class="row text-left">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h4>Delivery Date: {{ orderDetails.deliveryDate | date : format : medium}}</h4>
+        </div>
+    </div>
+    <div class="row text-left">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h4>Delivery Type: {{ orderDetails.deliveryType }}</h4>
+        </div>
+    </div>
+    <div class="row text-left">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h4>Delivery Cost: {{ orderDetails.deliveryCost | currency:'£' }}</h4>
+        </div>
+    </div>
+
+    <div class="row text-right">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h4>Total: {{ orderDetails.totalCost | currency:'£' }}</h4>
+        </div>
+    </div>
+</section>

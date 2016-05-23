@@ -1,0 +1,22 @@
+.productTitle {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all .3s ease-in-out;
+}
+
+.productTitle:hover {
+    cursor:pointer;
+    color: indigo;
+}
+
+.productImage {
+    cursor:pointer;
+    transition: all .3s ease-in-out;
+}
+
+.productImage:hover {
+    cursor:pointer;
+    transform: scale(1.05);
+}
