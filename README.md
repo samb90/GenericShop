@@ -17,14 +17,14 @@ Clone this repo.
 
 Run the following command to start the app on localhost:8000:
 
-'''
+```
 npm start
-'''
+```
 
 ## Running the tests
 
 Run the following code to launch karma and run the tests:
 
-'''
+```
 npm test
-'''
+```
